@@ -1,0 +1,6 @@
+SELECT 
+			STUFF(	(SELECT ' , '+ CAST(  tmp.CompanyId AS NVARCHAR(10))
+								FROM #TempMS tmp								
+								WHERE tmp.[Status] = 'Inserted'				
+								FOR XML PATH(''), TYPE
+							).value('.[1]','nvarchar(max)'), 1, 2, '') 
